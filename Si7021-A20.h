@@ -1,8 +1,8 @@
 /* @file Si7021-A20.h
  * @brief A single file library for communicating with the Si7021-A20 sensor using ESP-IDF.
  *
- * This library aims to provide an interface to initialize, configure, and read data from the BMP180
- * barometric pressure sensor using the ESP32 microcontroller and the ESP-IDFv5.4.0. The Si7021 offers 
+ * This library aims to provide an interface to initialize, configure, and read data from the Si7021
+ * humidity and temperature sensor using the ESP32 microcontroller and the ESP-IDFv5.4.0. The Si7021 offers 
  * an accurate digital solution ideal for measuring temperature, humidity and dew-point.
  * 
  * Dependencies:
