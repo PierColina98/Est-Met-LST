@@ -238,6 +238,7 @@ void app_main()
      *                                              DEEP SLEEP
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
      */
+    nvs_close(my_handle);
     free(data);
     esp_sleep_enable_timer_wakeup(WAKEUP_TIME_SEC * 1000000);
     esp_deep_sleep_start();
@@ -472,11 +473,14 @@ void vReadTipCount_Precip(void *pvParameters)
             vTaskDelay(50 / portTICK_PERIOD_MS);
         }
     }
+    if(tip_count >= 40){
+        tip_count = 0;
+    }
     float inches_in_duration = tip_count * inch_per_tip;
-    float inches_per_hour = inches_in_duration * (3600.0 / 5);
-    d->precipitacion = inches_per_hour;
+    float inches_per_sec = inches_in_duration / 5;
+    d->precipitacion = inches_per_sec;
     RainCheck = true;
-    printf("Rainfall rate: %.2f inches/hour\n", inches_per_hour);
+    printf("Rainfall rate: %.2f inches/sec\n", inches_per_sec);
 
     vTaskDelete(NULL);
 };
